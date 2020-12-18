@@ -5,9 +5,10 @@ choice of delimiter. I originally wrote this program in about 30 lines of Python
 that for extremely large SQLite databases I wasn't getting the performance that I needed. Hence this...
 
 
-Compiled and tested with GCC and G++. Include the `sqlite.c` and `sqlite.h` amalgamations
+Compiled and tested with GCC and G++. Included the `sqlite.c` and `sqlite.h` amalgamations
 from the SQLite website to make this a standalone executable. Compiling with the SQLite amalgamations
 offer a drastic performance benefit as well, since the compiler can do all sorts of crazy optimizations.
+These aren't guaranteed to be up to date, so please check before building.
 
 ---
 
