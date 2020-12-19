@@ -5,10 +5,36 @@ choice of delimiter. I originally wrote this program in about 30 lines of Python
 that for extremely large SQLite databases I wasn't getting the performance that I needed. Hence this...
 
 
-Compiled and tested with GCC and G++. Included the `sqlite.c` and `sqlite.h` amalgamations
-from the SQLite website to make this a standalone executable. Compiling with the SQLite amalgamations
-offer a drastic performance benefit as well, since the compiler can do all sorts of crazy optimizations.
-These aren't guaranteed to be up to date, so please check before building.
+---
+
+### Buidling
+
+If buidling from source, ensure that you have GCC and G++ installed. Next,
+install the SQLite library. If using the `apt` package manager, this is
+accomplished by the following command.
+
+```
+sudo apt install libsqlite3-dev
+```
+
+Next, clone the project from GitHub and change directory.
+
+```
+git clone https://github.com/dustinkredmond/SQLiteToCSV && cd SQLiteToCSV
+```
+
+To compile from source, run the following (requires CMake and Make)
+
+```
+cmake . && make
+```
+
+An executable will be generated, run the follwing to run it.
+
+```
+chmod +x ./SQLiteToCsv
+./SQLiteToCsv
+```
 
 ---
 
