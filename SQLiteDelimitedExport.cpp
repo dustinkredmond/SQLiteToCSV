@@ -34,7 +34,7 @@ bool SQLiteDelimitedExport::exportDb() {
     int rc;
 
     if (!existsFile(db)) {
-        sprintf(error, "Database \"%s\" does not exist.", db);
+        sprintf(error, "Database \"%s\" does not exist.\n", db);
         return false;
     }
 
@@ -56,7 +56,7 @@ bool SQLiteDelimitedExport::exportDb() {
 
     bool open = openFile(out);
     if (!open) {
-        sprintf(error, "Error: Could not open file \"%s\"", out);
+        sprintf(error, "Error: Could not open file \"%s\"\n", out);
         sqlite3_finalize(stmt);
         sqlite3_close(sqlite);
         return false;

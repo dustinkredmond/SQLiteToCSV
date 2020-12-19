@@ -41,13 +41,13 @@ int main(int argc, char **argv) {
 
     if (!strcmp(db,"") || !strcmp(out,"") || !strcmp(sql,"")) {
         printf("Error: parameters -db, -out, and -sql are required..\n");
-        printf("Enter \"-help\" for usage.");
+        printf("Enter \"-help\" for usage.\n");
         return 0;
     }
 
     if (!noPrompt) {
         if (!confirm(db,out,delimiter,sql)) {
-            printf("Exiting program.");
+            printf("Exiting program.\n");
             return 0;
         }
     }
@@ -68,7 +68,7 @@ bool confirm(const char* db, const char* out, char delimiter, const char* sql) {
            "\tOutput: %s\n"
            "\tDelimiter: %c\n"
            "\tSQL: %s\n"
-           "\nOkay to continue? (Y/N)",
+           "\nOkay to continue? (Y/N)\n",
            db,out,delimiter,sql);
     int c;
     c = getchar();
@@ -81,8 +81,7 @@ void help() {
            "\t-db          - Path to SQLite database\n"
            "\t-out         - Path to export CSV file\n"
            "\t-delimiter   - Delimiter to use in CSV file (optional)\n"
-           "\t                defaults to comma if not provided\n"
            "\t-sql         - SQL query to retrieve from database\n"
-           "\t -no-prompt  - Does not prompt the user to continue\n"
-           "\t-help        - Print information seen here");
+           "\t-no-prompt   - Does not prompt the user to continue\n"
+           "\t-help        - Print information seen here\n");
 }
