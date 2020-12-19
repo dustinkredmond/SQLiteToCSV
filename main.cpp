@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
     }
 
     if (!strcmp(db,"") || !strcmp(out,"") || !strcmp(sql,"")) {
-        printf("Error: parameters -db, -out, and -sql are required..\n");
+        printf("Error: parameters -db, -out, and -sql are required.\n");
         printf("Enter \"-help\" for usage.\n");
         return 0;
     }
