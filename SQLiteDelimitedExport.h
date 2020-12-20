@@ -22,21 +22,11 @@ public:
 private:
     bool openFile(const char* filename);
     void closeFile();
-    void writeDelimiter() {
-        fprintf(file, "%c", delimiter);
-    }
-    void writeNewLine() {
-        fprintf(file, "\n");
-    }
-    void writeColumnName(const char *value) {
-        writeString(value);
-    }
-    void writeInt(const int value) {
-        fprintf(file, "%i", value);
-    }
-    void writeDouble(const double value) {
-        fprintf(file, "%g", value);
-    }
+    void writeDelimiter();
+    void writeNewLine();
+    void writeColumnName(const char *value);
+    void writeInt(int value);
+    void writeDouble(double value);
     void writeEmpty() { }
     void writeString(const char* value);
 

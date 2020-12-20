@@ -180,3 +180,23 @@ void SQLiteDelimitedExport::writeString(const char* value) {
     }
 }
 
+void SQLiteDelimitedExport::writeDouble(const double value) {
+    fprintf(file, "%g", value);
+}
+
+void SQLiteDelimitedExport::writeInt(const int value) {
+    fprintf(file, "%i", value);
+}
+
+void SQLiteDelimitedExport::writeColumnName(const char *value) {
+    writeString(value);
+}
+
+void SQLiteDelimitedExport::writeNewLine() {
+    fprintf(file, "\n");
+}
+
+void SQLiteDelimitedExport::writeDelimiter() {
+    fprintf(file, "%c", delimiter);
+}
+
