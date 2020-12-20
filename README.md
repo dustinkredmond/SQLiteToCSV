@@ -61,3 +61,9 @@ table we could make a call to SQLiteToCSV like below.
 
 This would in turn run the query against the SQLite database, and pop out a `Test.csv` file
 in the directory specified.
+
+---
+
+### Not supported
+
+BLOBs or other binary objects. Instead, the string '<BLOB format not supported>' will be written.
