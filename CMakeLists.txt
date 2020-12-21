@@ -7,7 +7,7 @@ add_compile_options(-lstdc)
 add_compile_options(-lpthread)
 add_compile_options(-ldl)
 
-add_executable(SQLiteToCsv main.cpp SQLiteDelimitedExport.cpp SQLiteDelimitedExport.h main.h)
+add_executable(SQLiteToCsv main.c main.h)
 
 target_link_libraries(SQLiteToCsv LINK_PUBLIC sqlite3)
 target_link_libraries(SQLiteToCsv LINK_PUBLIC pthread)
