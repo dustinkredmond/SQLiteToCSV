@@ -1,9 +1,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "main.h"
-#include "sqlite3.h"
-#define MAX_ERR_LEN 1024
-
 
 /**
  * Processes arguments and calls exportDb(), which
@@ -58,7 +55,7 @@ int main(int argc, char **argv) {
         printf("File written to: %s\n", out);
         return 0;
     } else {
-        printf("Error writing file: %s\n", error);
+        printf("Error writing file.\n");
         return -1;
     }
 }
@@ -93,17 +90,19 @@ bool exportDb(char delim, const char *db, const char *out, const char *sql) {
     sqlite3 *sqlite;
     FILE *file = fopen(out, "w");
     if (file == NULL) {
-        sprintf(error, "Could not open output file (%s) for writing.\n", out);
+        printf("Could open output file for writing at %s\n", out);
         return false;
     }
-    if (fopen(db,"r") == NULL) {
-        sprintf(error, "Could not open database (%s) for reading.\n", db);
+
+    FILE *dbFile = fopen(db,"r");
+    if (dbFile == NULL) {
+        printf("Could not find database at %s\n", db);
         return false;
     }
 
     int rc = sqlite3_open(db, &sqlite);
     if (rc) {
-        strncpy(error, sqlite3_errmsg(sqlite), MAX_ERR_LEN);
+        printf("Could not open SQLite connection.\n");
         sqlite3_close(sqlite);
         return false;
     }
@@ -112,14 +111,7 @@ bool exportDb(char delim, const char *db, const char *out, const char *sql) {
     sqlite3_stmt *stmt;
     rc = sqlite3_prepare_v2(sqlite, sql, sqlLength, &stmt, 0);
     if (rc != SQLITE_OK) {
-        strncpy(error, sqlite3_errmsg(sqlite), MAX_ERR_LEN);
-        sqlite3_close(sqlite);
-        return false;
-    }
-
-    if (!file) {
-        sprintf(error, "Error: Could not open file \"%s\"\n", out);
-        sqlite3_finalize(stmt);
+        printf("Error initializing SQLite statement.\n");
         sqlite3_close(sqlite);
         return false;
     }
@@ -135,7 +127,7 @@ bool exportDb(char delim, const char *db, const char *out, const char *sql) {
     }
     fprintf(file, "\n");
 
-    // each field
+     //each field
     row = 1;
     do {
         rc = sqlite3_step(stmt);
@@ -161,7 +153,7 @@ bool exportDb(char delim, const char *db, const char *out, const char *sql) {
                         writeString("<BLOB format not supported>", delim, file);
                         break;
                     default:
-                        // empty field
+                         //empty field
                         break;
                 }
             }

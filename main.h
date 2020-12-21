@@ -8,6 +8,5 @@ void help();
 bool confirm(const char* db, const char* out, char delimiter, const char* sql);
 void writeString(const char *value, char delimiter, FILE *file);
 bool exportDb(char delim, const char *db, const char *out, const char *sql);
-char *error = "";
 
 #endif
