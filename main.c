@@ -1,6 +1,5 @@
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include "main.h"
 #include "sqlite3.h"
 #define MAX_ERR_LEN 1024
@@ -64,7 +63,7 @@ int main(int argc, char **argv) {
     }
 }
 
-int confirm(const char* db, const char* out, char delimiter, const char* sql) {
+bool confirm(const char* db, const char* out, char delimiter, const char* sql) {
     printf("Found parameters:\n"
            "\tDB: %s\n"
            "\tOutput: %s\n"
@@ -74,9 +73,9 @@ int confirm(const char* db, const char* out, char delimiter, const char* sql) {
            db,out,delimiter,sql);
     int c = getchar();
     if (c == 'Y' || c == 'y') {
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 }
 
 void help() {
@@ -90,23 +89,23 @@ void help() {
            "\t-help        - Print information seen here\n");
 }
 
-int exportDb(char delim, const char *db, const char *out, const char *sql) {
+bool exportDb(char delim, const char *db, const char *out, const char *sql) {
     sqlite3 *sqlite;
     FILE *file = fopen(out, "w");
     if (file == NULL) {
         sprintf(error, "Could not open output file (%s) for writing.\n", out);
-        exit(-1);
+        return false;
     }
     if (fopen(db,"r") == NULL) {
         sprintf(error, "Could not open database (%s) for reading.\n", db);
-        exit(-1);
+        return false;
     }
 
     int rc = sqlite3_open(db, &sqlite);
     if (rc) {
         strncpy(error, sqlite3_errmsg(sqlite), MAX_ERR_LEN);
         sqlite3_close(sqlite);
-        return 0;
+        return false;
     }
 
     int sqlLength = strlen(sql);
@@ -115,14 +114,14 @@ int exportDb(char delim, const char *db, const char *out, const char *sql) {
     if (rc != SQLITE_OK) {
         strncpy(error, sqlite3_errmsg(sqlite), MAX_ERR_LEN);
         sqlite3_close(sqlite);
-        return 0;
+        return false;
     }
 
     if (!file) {
         sprintf(error, "Error: Could not open file \"%s\"\n", out);
         sqlite3_finalize(stmt);
         sqlite3_close(sqlite);
-        return 0;
+        return false;
     }
 
     int row;
@@ -178,7 +177,7 @@ int exportDb(char delim, const char *db, const char *out, const char *sql) {
 
     sqlite3_finalize(stmt);
     sqlite3_close(sqlite);
-    return 1;
+    return true;
 }
 
 
