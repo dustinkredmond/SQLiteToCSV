@@ -66,4 +66,4 @@ in the directory specified.
 
 ### Not supported
 
-BLOBs or other binary objects. Instead, the string '<BLOB format not supported>' will be written.
+BLOBs or other binary objects. Instead, the string '&lt;BLOB format not supported&gt;' will be written.
