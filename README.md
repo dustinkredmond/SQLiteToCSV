@@ -29,10 +29,9 @@ To compile from source, run the following (requires CMake and Make)
 cmake . && make
 ```
 
-An executable will be generated, run the following to run it.
+An executable will be generated, run it as so.
 
 ```
-chmod +x ./SQLiteToCsv
 ./SQLiteToCsv
 ```
 
