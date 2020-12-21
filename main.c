@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
     const char* out = "";  // output file path
     char delimiter = ',';  // delimiter (default comma)
     const char* sql = "";  // SQL query to retrieve CSV data
-    int noPrompt = 0;
+    int prompt = false;
 
     // process arguments
     for (int arg = 0; arg < argc; arg++) {
@@ -31,8 +31,8 @@ int main(int argc, char **argv) {
         if (strcmp(argv[arg], "-sql") == 0) {
             sql = argv[arg + 1];
         }
-        if (strcmp(argv[arg], "-no-prompt") == 0) {
-            noPrompt = 1;
+        if (strcmp(argv[arg], "-prompt") == 0) {
+            prompt = true;
         }
     }
 
@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    if (!noPrompt) {
+    if (prompt) {
         if (!confirm(db,out,delimiter,sql)) {
             printf("Exiting program.\n");
             return 0;

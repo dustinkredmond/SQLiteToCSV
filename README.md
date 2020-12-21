@@ -7,9 +7,9 @@ that for extremely large SQLite databases I wasn't getting the performance that 
 
 ---
 
-### Buidling
+### Building
 
-If buidling from source, ensure that you have GCC and G++ installed. Next,
+If building from source, ensure that you have GCC and G++ installed. Next,
 install the SQLite library. If using the `apt` package manager, this is
 accomplished by the following command.
 
@@ -29,7 +29,7 @@ To compile from source, run the following (requires CMake and Make)
 cmake . && make
 ```
 
-An executable will be generated, run the follwing to run it.
+An executable will be generated, run the following to run it.
 
 ```
 chmod +x ./SQLiteToCsv
@@ -44,7 +44,7 @@ chmod +x ./SQLiteToCsv
 - -out - Path to export CSV file
 - -delimiter - Delimiter to use in CSV file (optional) defaults to comma if not provided
 - -sql - SQL query to retrieve from database
-- -no-prompt - Does not prompt the user to continue
+- -prompt - Prompt the user to continue (doesn't by default)
 - -help - Print information seen here
 
 ---
