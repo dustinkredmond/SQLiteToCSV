@@ -9,9 +9,9 @@ that for extremely large SQLite databases I wasn't getting the performance that 
 
 ### Building
 
-If building from source, ensure that you have GCC and G++ installed. Next,
+Ensure that you have a `C` compiler installed (GCC preferred). Next,
 install the SQLite library. If using the `apt` package manager, this is
-accomplished by the following command.
+accomplished by the following command, some Linux distros may already include this.
 
 ```
 sudo apt install libsqlite3-dev
